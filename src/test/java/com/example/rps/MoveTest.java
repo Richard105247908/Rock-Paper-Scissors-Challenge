@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class MoveTest {
 
-    // Test #1 (RED): rock beats scissors.
     @Test
     void rockBeatsScissors() {
         assertTrue(Move.ROCK.beats(Move.SCISSORS));
