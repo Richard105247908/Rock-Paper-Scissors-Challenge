@@ -11,4 +11,7 @@ class MoveTest {
     void rockBeatsScissors() {
         assertTrue(Move.ROCK.beats(Move.SCISSORS));
     }
+
+    @Test
+
 }
