@@ -7,21 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MoveTest {
-
-    @Test
-    void rockBeatsScissors() {
-        assertTrue(Move.ROCK.beats(Move.SCISSORS));
-    }
-
-    @Test
-    void rockDoesNotBeatPaper() {assertFalse(Move.ROCK.beats(Move.PAPER)); }
-
-    @Test
-    void paperBeatsRock(){ assertTrue(Move.PAPER.beats(Move.ROCK));}
-
-    @Test
-    void scissorBeatsPaper(){assertTrue(Move.SCISSORS.beats(Move.PAPER));}
-
+    
     @ParameterizedTest
     @CsvSource({"ROCK,SCISSORS, true",
     "PAPER,ROCK,true",
@@ -30,7 +16,8 @@ class MoveTest {
     "ROCK,PAPER, false",
     "PAPER,SCISSORS,false",
     "ROCK,ROCK, false",
-    "SCISSORS,SCISSORS, false",})
+    "SCISSORS,SCISSORS, false",
+    "PAPER,PAPER, false"})
     void beatsFollowsTheRulesOfTheGame(Move attacker, Move defender, boolean expected){
         assertEquals(expected,attacker.beats(defender));
     }
