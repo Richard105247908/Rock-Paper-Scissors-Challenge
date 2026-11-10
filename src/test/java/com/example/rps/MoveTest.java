@@ -24,7 +24,9 @@ class MoveTest {
 
     @ParameterizedTest
     @CsvSource({"ROCK,SCISSORS, true",
-    })
+    "PAPER,ROCK,true",
+    "SCISSORS, PAPER, true"})
+    void beatsFollowsTheRulesOfTheGame()
 
 
 }
