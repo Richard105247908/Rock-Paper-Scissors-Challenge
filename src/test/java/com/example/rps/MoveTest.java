@@ -25,10 +25,13 @@ class MoveTest {
     @ParameterizedTest
     @CsvSource({"ROCK,SCISSORS, true",
     "PAPER,ROCK,true",
-    "SCISSORS, PAPER, true"})
+    "SCISSORS, PAPER, true",
+    "SCISSOR,ROCK, false"})
     void beatsFollowsTheRulesOfTheGame(Move attacker, Move defender, boolean expected){
         assertEquals(expected,attacker.beats(defender));
     }
+
+
 
 
 }
