@@ -25,7 +25,11 @@ public class PlayerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "   "})
-    void blankNameIsRejected(String name) {
+        void blankNameIsRejected(String name) {
+        var ex = assertThrows(IllegalArgumentException.class,
+                () -> new Player(""));
+
+        assertEquals("Player name must not be blank",ex.getMessage());
 
     }
 }
