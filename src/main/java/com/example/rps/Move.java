@@ -1,6 +1,5 @@
 package com.example.rps;
 
-// Make it green with the smallest change you can, then refactor.
 public enum Move {
     ROCK, PAPER, SCISSORS;
 
