@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MoveTest {
-    
+
     @ParameterizedTest
     @CsvSource({"ROCK,SCISSORS, true",
     "PAPER,ROCK,true",
