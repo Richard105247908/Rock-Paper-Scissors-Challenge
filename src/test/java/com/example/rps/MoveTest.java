@@ -26,9 +26,10 @@ class MoveTest {
     @CsvSource({"ROCK,SCISSORS, true",
     "PAPER,ROCK,true",
     "SCISSORS, PAPER, true",
-    "SCISSOR,ROCK, false",
+    "SCISSORS,ROCK, false",
     "ROCK,PAPER, false",
-    "PAPER,SCISSORS,false"})
+    "PAPER,SCISSORS,false",
+    "ROCK,ROCK, false",})
     void beatsFollowsTheRulesOfTheGame(Move attacker, Move defender, boolean expected){
         assertEquals(expected,attacker.beats(defender));
     }
