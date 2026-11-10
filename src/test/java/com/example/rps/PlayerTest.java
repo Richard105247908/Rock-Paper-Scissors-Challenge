@@ -14,11 +14,10 @@ public class PlayerTest {
     }
 
     @Test
-    void playerReturnNameNull(){
-        Player player1 = new Player("");
+    void blankPlayerNameIsRejected(){
         var ex = assertThrows(IllegalArgumentException.class,
-                () -> player1.isBlank();
+                () -> new Player(""));
 
-        assertEquals("",ex.getMessage());
+        assertEquals("Player name must not be blank",ex.getMessage());
     }
 }
