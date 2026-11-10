@@ -29,7 +29,8 @@ class MoveTest {
     "SCISSORS,ROCK, false",
     "ROCK,PAPER, false",
     "PAPER,SCISSORS,false",
-    "ROCK,ROCK, false",})
+    "ROCK,ROCK, false",
+    "SCISSORS,SCISSORS, false",})
     void beatsFollowsTheRulesOfTheGame(Move attacker, Move defender, boolean expected){
         assertEquals(expected,attacker.beats(defender));
     }
