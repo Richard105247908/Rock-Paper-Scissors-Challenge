@@ -18,4 +18,7 @@ class MoveTest {
     @Test
     void paperBeatsRock(){ assertTrue(Move.PAPER.beats(Move.ROCK));}
 
+    @Test
+    void scissorBeatsPaper(){assertTrue(Move.SCISSORS.beats(Move.PAPER));}
+
 }
