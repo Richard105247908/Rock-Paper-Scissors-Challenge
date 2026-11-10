@@ -14,7 +14,7 @@ public class GameTest {
     }
 
     @Test
-    void playerLoseWhenComputerMoveBeatsTheirMove() {
+    void playerLosesWhenComputerMoveBeatsTheirMove() {
         Game game = new Game(() -> Move.PAPER);
 
         assertEquals(Result.LOSE, game.play(Move.ROCK));
@@ -22,9 +22,9 @@ public class GameTest {
     }
 
     @Test
-    void playerDrawWhenComputerMoveBeatsTheirMove() {
+    void samePlayedMoveIsaDraw() {
         Game game = new Game(() -> Move.ROCK);
 
-        assertEquals(Result.LOSE, game.play(Move.ROCK));
+        assertEquals(Result.DRAW, game.play(Move.ROCK));
     }
 }
