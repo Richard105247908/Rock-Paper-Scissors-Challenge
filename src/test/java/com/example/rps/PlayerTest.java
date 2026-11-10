@@ -9,27 +9,26 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
     @Test
-    void playerKnowsTheirName(){
-        Player player=new Player("Kevin");
+    void playerKnowsTheirName() {
+        Player player = new Player("Kevin");
 
-        assertEquals("Kevin",player.name());
+        assertEquals("Kevin", player.name());
     }
 
     @Test
-    void blankPlayerNameIsRejected(){
+    void blankPlayerNameIsRejected() {
         var ex = assertThrows(IllegalArgumentException.class,
                 () -> new Player(""));
 
-        assertEquals("Player name must not be blank",ex.getMessage());
+        assertEquals("Player name must not be blank", ex.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "   "})
-        void blankNameIsRejected(String name) {
+    void blankNameIsRejected(String name) {
         var ex = assertThrows(IllegalArgumentException.class,
-                () -> new Player(""));
+                () -> new Player(name));
 
-        assertEquals("Player name must not be blank",ex.getMessage());
-
+        assertEquals("Player name must not be blank", ex.getMessage());
     }
 }
