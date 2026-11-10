@@ -5,7 +5,7 @@ public class Player {
 
     public Player(String name){
         if (name.isBlank()) {
-            throw new IllegalArgumentException("Pet name must not be blank");
+            throw new IllegalArgumentException("Player name must not be blank");
         }
     this.name=name;
     }
