@@ -12,4 +12,19 @@ public class GameTest {
 
         assertEquals(Result.WIN, game.play(Move.ROCK));
     }
+
+    @Test
+    void playerLoseWhenComputerMoveBeatsTheirMove() {
+        Game game = new Game(() -> Move.PAPER);
+
+        assertEquals(Result.LOSE, game.play(Move.ROCK));
+
+    }
+
+    @Test
+    void playerDrawWhenComputerMoveBeatsTheirMove() {
+        Game game = new Game(() -> Move.ROCK);
+
+        assertEquals(Result.LOSE, game.play(Move.ROCK));
+    }
 }
