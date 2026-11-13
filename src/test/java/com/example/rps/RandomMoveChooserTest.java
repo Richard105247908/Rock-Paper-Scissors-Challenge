@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RandomMoveChooserTest {
 
@@ -29,7 +29,12 @@ class RandomMoveChooserTest {
     @CsvSource({"0, ROCK",
     "1, PAPER",
     "2, SCISSORS"})
-    void rollOfOneTwoAndThree(){
+    void rollOfOneTwoAndThree(Integer roll,Move expected){
+
+         MoveChooser chooser =new RandomMoveChooser(alwaysRolls(roll));
+
+
+         assertEquals(expected,chooser.choose());
 
      }
 
