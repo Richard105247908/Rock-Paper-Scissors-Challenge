@@ -17,6 +17,7 @@ class RandomMoveChooserTest {
 
      @Test
     void rollOfZeroChoosesRock(){
+         MoveChooser chooser =new RandomMoveChooser(alwaysRolls(0));
 
      }
 }
