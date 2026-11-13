@@ -29,4 +29,8 @@ class RandomMoveChooserTest {
     @CsvSource({"0, ROCK",
     "1, PAPER",
     "2, SCISSORS"})
+    void rollOfOneTwoAndThree(){
+
+     }
+
 }
