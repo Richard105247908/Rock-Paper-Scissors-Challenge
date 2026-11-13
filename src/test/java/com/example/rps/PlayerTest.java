@@ -35,6 +35,8 @@ public class PlayerTest {
     @Test
     void nullNameIsRejected(){
         var ex= assertThrows(IllegalArgumentException.class,
-                () -> new Player(null))
+                () -> new Player(null));
+
+        assertEquals("Player name must not be blank",ex.getMessage());
     }
 }
