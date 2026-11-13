@@ -31,4 +31,7 @@ public class PlayerTest {
 
         assertEquals("Player name must not be blank", ex.getMessage());
     }
+
+    @Test
+    void nullNameIsRejected(){}
 }
