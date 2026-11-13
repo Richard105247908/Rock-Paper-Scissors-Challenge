@@ -1,5 +1,10 @@
 package com.example.rps;
 
- class RandomMoveChooserTest {
+import java.util.Random;
 
+class RandomMoveChooserTest {
+
+     private static Random alwaysRolls(int value){
+
+     }
 }
