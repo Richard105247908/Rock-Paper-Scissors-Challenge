@@ -33,5 +33,8 @@ public class PlayerTest {
     }
 
     @Test
-    void nullNameIsRejected(){}
+    void nullNameIsRejected(){
+        var ex= assertThrows(IllegalArgumentException.class,
+
+    }
 }
