@@ -10,4 +10,9 @@ public class RandomMoveChooser implements MoveChooser{
     public RandomMoveChooser(){
         this(new Random());
     }
+
+    @Override
+    public Move choose() {
+        return null;
+    }
 }
