@@ -6,4 +6,8 @@ public class RandomMoveChooser implements MoveChooser{
 
     public RandomMoveChooser (Random random){
     }
+
+    public RandomMoveChooser(){
+        this(new Random());
+    }
 }
