@@ -15,14 +15,6 @@ public class PlayerTest {
         assertEquals("Kevin", player.name());
     }
 
-    @Test
-    void blankPlayerNameIsRejected() {
-        var ex = assertThrows(IllegalArgumentException.class,
-                () -> new Player(""));
-
-        assertEquals("Player name must not be blank", ex.getMessage());
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"", "   "})
     void blankNameIsRejected(String name) {
@@ -33,10 +25,10 @@ public class PlayerTest {
     }
 
     @Test
-    void nullNameIsRejected(){
-        var ex= assertThrows(IllegalArgumentException.class,
+    void nullNameIsRejected() {
+        var ex = assertThrows(IllegalArgumentException.class,
                 () -> new Player(null));
 
-        assertEquals("Player name must not be blank",ex.getMessage());
+        assertEquals("Player name must not be blank", ex.getMessage());
     }
 }
