@@ -1,5 +1,7 @@
 package com.example.rps;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Random;
 
 class RandomMoveChooserTest {
@@ -10,7 +12,11 @@ class RandomMoveChooserTest {
             public int nextInt(int bound) {
                 return value;
             }
-
         };
+     }
+
+     @Test
+    void rollOfZeroChoosesRock(){
+
      }
 }
