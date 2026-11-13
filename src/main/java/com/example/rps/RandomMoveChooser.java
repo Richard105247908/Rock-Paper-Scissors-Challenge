@@ -13,6 +13,6 @@ public class RandomMoveChooser implements MoveChooser{
 
     @Override
     public Move choose() {
-        return null;
+        return Move.ROCK;
     }
 }

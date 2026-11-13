@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class RandomMoveChooserTest {
 
      private static Random alwaysRolls(int value){
@@ -18,6 +20,6 @@ class RandomMoveChooserTest {
      @Test
     void rollOfZeroChoosesRock(){
          MoveChooser chooser =new RandomMoveChooser(alwaysRolls(0));
-
+         assertEquals(Move.ROCK,chooser.choose());
      }
 }
