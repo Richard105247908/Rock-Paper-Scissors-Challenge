@@ -41,7 +41,7 @@ public class GameControllerTest {
                 .andExpect(request().sessionAttribute("name", "Philip"));
     }
 
-    //3
+
     @Test
     void playPageGreetsThePlayerByName() throws Exception {
         mockMvc.perform(get("/play").sessionAttr("name", "Philip"))
@@ -66,4 +66,7 @@ public class GameControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/game"));
     }
+
+    @Test
+
 }
