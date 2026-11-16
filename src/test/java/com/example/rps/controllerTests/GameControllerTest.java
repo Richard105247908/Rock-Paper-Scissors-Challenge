@@ -37,4 +37,9 @@ public class GameControllerTest {
                 .andExpect(request().sessionAttribute("name", "Philip"));
     }
 
+    @Test
+    void playPageGreetsThePlayerByName() throws Exception {
+
+    }
+
 }
