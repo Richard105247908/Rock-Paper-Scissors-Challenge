@@ -29,7 +29,7 @@ class RandomMoveChooserTest {
     @CsvSource({"0, ROCK",
     "1, PAPER",
     "2, SCISSORS"})
-    void rollOfOneTwoAndThree(Integer roll,Move expected){
+    void rollChoosesTheMatchingMove(Integer roll,Move expected){
 
          MoveChooser chooser =new RandomMoveChooser(alwaysRolls(roll));
 
