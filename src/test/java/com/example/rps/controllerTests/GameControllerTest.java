@@ -47,6 +47,6 @@ public class GameControllerTest {
 
     @Test
     void takesPlayersName() throws Exception {
-        mockMvc
+        mockMvc.perform()
     }
 }
