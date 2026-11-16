@@ -11,6 +11,7 @@ public class RandomMoveChooser implements MoveChooser{
     }
 
     public RandomMoveChooser(){
+
         this(new Random());
     }
 
