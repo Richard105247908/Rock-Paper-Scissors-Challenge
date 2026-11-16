@@ -4,7 +4,10 @@ import java.util.Random;
 
 public class RandomMoveChooser implements MoveChooser{
 
+    private final Random random;
+
     public RandomMoveChooser (Random random){
+        this.random=random;
     }
 
     public RandomMoveChooser(){
