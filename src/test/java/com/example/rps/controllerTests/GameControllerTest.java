@@ -68,5 +68,8 @@ public class GameControllerTest {
     }
 
     @Test
+    void playPageOffersTheThreeMoves() throws Exception {
+
+    }
 
 }
