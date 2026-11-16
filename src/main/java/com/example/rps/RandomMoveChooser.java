@@ -17,6 +17,7 @@ public class RandomMoveChooser implements MoveChooser{
 
     @Override
     public Move choose() {
-        return Move.ROCK;
+        int roll= random.nextInt(3);
+        return Move.values()[roll];
     }
 }
