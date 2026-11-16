@@ -8,6 +8,10 @@ import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 @WebMvcTest(GameController.class)
 public class GameControllerTest {
 
@@ -17,6 +21,10 @@ public class GameControllerTest {
 
     @Test
     void newGameFormIsShown() throws Exception {
+        mockMvc.perform(get("/game"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("new_game"));
+
 
     }
 
