@@ -43,8 +43,10 @@ public class GameControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("play"))
                 .andExpect(model().attribute("name", "Philip"));
-
-
     }
 
+    @Test
+    void takesPlayersName() throws Exception {
+        mockMvc
+    }
 }
