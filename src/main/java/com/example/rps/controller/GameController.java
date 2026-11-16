@@ -1,9 +1,8 @@
 package com.example.rps.controller;
 
 import com.example.rps.Game;
+import com.example.rps.Player;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,14 +24,26 @@ public class GameController {
     }
 
     @PostMapping("/game")
-    public String newName(@RequestParam String name, HttpSession session) {
-        session.setAttribute("name", name);
-        return "redirect:/play";
+    public String startGame(@RequestParam String name, HttpSession session, Model model) {
+
+        try {
+            Player player= new Player(name);
+            session.setAttribute("name",player.name());
+            return "redirect:/play";
+
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "new_game";
+        }
     }
 
     @GetMapping("/play")
-    public String getName(HttpSession session, Model model){
-        model.addAttribute("name",session.getAttribute("name"));
+    public String play(HttpSession session, Model model) {
+        String name=(String)session.getAttribute("name");
+        if (name==null){
+            return "redirect:/game";
+        }
+        model.addAttribute("name", name);
 
         return "play";
     }
