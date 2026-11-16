@@ -10,32 +10,38 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RandomMoveChooserTest {
 
-     private static Random alwaysRolls(int value){
+    private static Random alwaysRolls(int value) {
         return new Random() {
             @Override
             public int nextInt(int bound) {
                 return value;
             }
         };
-     }
+    }
 
-     @Test
-    void rollOfZeroChoosesRock(){
-         MoveChooser chooser =new RandomMoveChooser(alwaysRolls(0));
-         assertEquals(Move.ROCK,chooser.choose());
-     }
+    @Test
+    void rollOfZeroChoosesRock() {
+        MoveChooser chooser = new RandomMoveChooser(alwaysRolls(0));
+        assertEquals(Move.ROCK, chooser.choose());
+    }
 
-     @ParameterizedTest
+    @ParameterizedTest
     @CsvSource({"0, ROCK",
-    "1, PAPER",
-    "2, SCISSORS"})
-    void rollChoosesTheMatchingMove(Integer roll,Move expected){
+            "1, PAPER",
+            "2, SCISSORS"})
+    void rollChoosesTheMatchingMove(int roll, Move expected) {
 
-         MoveChooser chooser =new RandomMoveChooser(alwaysRolls(roll));
+        MoveChooser chooser = new RandomMoveChooser(alwaysRolls(roll));
 
 
-         assertEquals(expected,chooser.choose());
+        assertEquals(expected, chooser.choose());
 
-     }
+    }
+
+    @Test
+    void defaultConstructorDoesNotThrow() {
+        assertDoesNotThrow(() -> new RandomMoveChooser().choose());
+
+    }
 
 }
