@@ -39,6 +39,11 @@ public class GameControllerTest {
 
     @Test
     void playPageGreetsThePlayerByName() throws Exception {
+        mockMvc.perform(get("/play").sessionAttr("name","Philip"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("play"))
+                .andExpect(model().attribute("name", "Philip"));
+
 
     }
 
