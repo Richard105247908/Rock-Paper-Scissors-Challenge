@@ -31,9 +31,10 @@ public class GameControllerTest {
     }
 
     @Test
-    void newGameNameIsSaved() throws Exception{
+    void startsGameAndRedirectsToPlay() throws Exception{
         mockMvc.perform(post("/game")
-                .param("name","Philip")).andExpect(status().is3xxRedirection())
+                .param("name","Philip"))
+                .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/play"))
                 .andExpect(request().sessionAttribute("name", "Philip"));
     }
