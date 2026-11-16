@@ -2,22 +2,22 @@ package com.example.rps;
 
 import java.util.Random;
 
-public class RandomMoveChooser implements MoveChooser{
+public class RandomMoveChooser implements MoveChooser {
 
     private final Random random;
 
-    public RandomMoveChooser (Random random){
-        this.random=random;
+    public RandomMoveChooser(Random random) {
+        this.random = random;
     }
 
-    public RandomMoveChooser(){
+    public RandomMoveChooser() {
 
         this(new Random());
     }
 
     @Override
     public Move choose() {
-        int roll= random.nextInt(3);
+        int roll = random.nextInt(3);
         return Move.values()[roll];
     }
 }
