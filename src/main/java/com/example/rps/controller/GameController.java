@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class GameController {
-    public GameController(Game game){
 
+    private final Game game;
+
+    public GameController(Game game){
+        this.game=game;
     }
 }
