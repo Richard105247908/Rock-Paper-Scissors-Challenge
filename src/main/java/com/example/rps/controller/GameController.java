@@ -27,8 +27,8 @@ public class GameController {
     public String startGame(@RequestParam String name, HttpSession session, Model model) {
 
         try {
-            Player player= new Player(name);
-            session.setAttribute("name",player.name());
+            Player player = new Player(name);
+            session.setAttribute("name", player.name());
             return "redirect:/play";
 
         } catch (IllegalArgumentException e) {
@@ -39,8 +39,8 @@ public class GameController {
 
     @GetMapping("/play")
     public String play(HttpSession session, Model model) {
-        String name=(String)session.getAttribute("name");
-        if (name==null){
+        String name = (String) session.getAttribute("name");
+        if (name == null) {
             return "redirect:/game";
         }
         model.addAttribute("name", name);
