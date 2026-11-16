@@ -1,2 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<body>
 <h1>Welcome, <span th:text="${name}">Player</span></h1>
+
+<form method="post" action="/play">
+    <button type="submit" name="move"
+            th:each="move : ${moves}"
+            th:value="${move}"
+            th:text="${move}">Move</button>
+</form>
+</body>
+</html>

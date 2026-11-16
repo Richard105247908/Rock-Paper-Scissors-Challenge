@@ -1,6 +1,7 @@
 package com.example.rps.controller;
 
 import com.example.rps.Game;
+import com.example.rps.Move;
 import com.example.rps.Player;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,7 @@ public class GameController {
             return "redirect:/game";
         }
         model.addAttribute("name", name);
+        model.addAttribute("moves", Move.values());
 
         return "play";
     }

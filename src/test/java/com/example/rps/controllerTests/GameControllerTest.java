@@ -1,6 +1,7 @@
 package com.example.rps.controllerTests;
 
 import com.example.rps.Game;
+import com.example.rps.Move;
 import com.example.rps.controller.GameController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -66,10 +67,18 @@ public class GameControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/game"));
     }
-
+    //5
     @Test
     void playPageOffersTheThreeMoves() throws Exception {
+        mockMvc.perform(get("/play").sessionAttr("name", "Phillip"))
+                .andExpect(model().attribute("moves", Move.values()));
 
+    }
+
+    @Test
+    void playPostMoveSeeResult() throws Exception {
+        mockMvc.perform(post("/play").sessionAttr("name","Philip"))
+                .andExpect().
     }
 
 }
