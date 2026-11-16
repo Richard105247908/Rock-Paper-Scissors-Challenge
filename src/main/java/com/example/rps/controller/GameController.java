@@ -3,6 +3,7 @@ package com.example.rps.controller;
 import com.example.rps.Game;
 import com.example.rps.Move;
 import com.example.rps.Player;
+import com.example.rps.Result;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,8 +47,13 @@ public class GameController {
         }
         model.addAttribute("name", name);
         model.addAttribute("moves", Move.values());
-
         return "play";
+    }
+
+    @PostMapping("/play")
+    public String xx(@RequestParam Move move,HttpSession session,Model model){
+
+        return "f";
     }
 
 }

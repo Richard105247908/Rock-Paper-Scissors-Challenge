@@ -2,6 +2,7 @@ package com.example.rps.controllerTests;
 
 import com.example.rps.Game;
 import com.example.rps.Move;
+import com.example.rps.Result;
 import com.example.rps.controller.GameController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,6 +13,7 @@ import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -67,18 +69,26 @@ public class GameControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/game"));
     }
+
     //5
     @Test
     void playPageOffersTheThreeMoves() throws Exception {
-        mockMvc.perform(get("/play").sessionAttr("name", "Phillip"))
+        mockMvc.perform(get("/play").sessionAttr("name", "Philip"))
                 .andExpect(model().attribute("moves", Move.values()));
 
     }
 
+    //6e
     @Test
-    void playPostMoveSeeResult() throws Exception {
-        mockMvc.perform(post("/play").sessionAttr("name","Philip"))
-                .andExpect().
+    void rockThatBeatsTheComputerShowsTheWinPage() throws Exception {
+        when(game.play(Move.ROCK)).thenReturn(Result.WIN);
+        mockMvc.perform(post("/play")
+                        .param("move", "ROCK")
+                        .sessionAttr("name", "Philip"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("win"))
+                .andExpect(model().attribute("name", "Philip"));
+
     }
 
 }
