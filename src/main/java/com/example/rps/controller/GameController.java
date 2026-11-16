@@ -32,8 +32,9 @@ public class GameController {
 
     @GetMapping("/play")
     public String getName(HttpSession session, Model model){
+        model.addAttribute("name",session.getAttribute("name"));
 
-        return"d";
+        return "play";
     }
 
 }
