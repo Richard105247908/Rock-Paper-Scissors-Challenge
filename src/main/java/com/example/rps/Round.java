@@ -12,15 +12,17 @@ public class Round {
         this.result = result;
     }
 
-    public Move playerMove() {
+    public Move getPlayerMove() {
         return playerMove;
     }
 
-    public Move computerMove(){
+    public Move getComputerMove(){
         return computerMove;
     }
 
-    public Result result(){
+    public Result getResult(){
         return result;
     }
 }
+
+

@@ -58,7 +58,7 @@ public class GameController {
         if (name == null) {
             return "redirect:/game";
         }
-        Result result = game.play(move);
+        Result result = game.play(move).getResult();
         model.addAttribute("name", name);
         return result.name().toLowerCase(Locale.ROOT);
     }
