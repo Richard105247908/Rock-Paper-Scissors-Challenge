@@ -88,9 +88,9 @@ public class GameControllerTest {
                         .sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("win"))
-                .andExpect(model().attribute("name", "Philip"))
-                .andExpect(model().attribute("playerMove", Move.ROCK))
-                .andExpect(model().attribute("computerMove", Move.SCISSORS));
+                .andExpect(model().attribute("name", "Philip"));
+//                .andExpect(model().attribute("playerMove", Move.ROCK))
+//                .andExpect(model().attribute("computerMove", Move.SCISSORS));
     }
 
 
@@ -104,9 +104,8 @@ public class GameControllerTest {
                         .sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name(expectedView))
-                .andExpect(model().attribute("name", "Philip"))
-                .andExpect(model().attribute("playerMove", Move.ROCK))
-                .andExpect(model().attribute("computerMove", Move.SCISSORS));
+                .andExpect(model().attribute("name", "Philip"));
+
 
     }
 
@@ -115,6 +114,18 @@ public class GameControllerTest {
         mockMvc.perform(post("/play").param("move", "ROCK"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/game"));
+    }
+
+    @Test
+    public void resultPageShowsBothMoves() throws Exception{
+        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK, Move.SCISSORS, Result.WIN));
+        mockMvc.perform(post("/play")
+                .param("move","ROCK")
+                .sessionAttr("name","Philip"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("win"))
+                .andExpect(model().attribute("playerMove",Move.ROCK))
+                .andExpect(model().attribute("computerMove",Move.SCISSORS));
     }
 
 
