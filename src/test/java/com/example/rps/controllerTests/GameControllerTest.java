@@ -90,8 +90,20 @@ public class GameControllerTest {
                 .andExpect(model().attribute("name", "Philip"));
 
     }
+    //Test 7
+   @ParameterizedTest
+   @CsvSource({"WIN, win","LOSE, lose", "DRAW, draw"})
+    void playShowMatchingResultingView(Result result, String expectedView) throws Exception {
+        when(game.play(Move.ROCK)).thenReturn(result);
 
-   // @Test 7
-   // public void
+        mockMvc.perform(post("/play")
+                .param("move", "ROCK")
+                .sessionAttr("name","Philip"))
+                .andExpect(status().isOk())
+                .andExpect(view().name(expectedView))
+                .andExpect(model().attribute("name","Philip"));
+
+   }
+
 
 }
