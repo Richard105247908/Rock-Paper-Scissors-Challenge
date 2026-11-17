@@ -90,20 +90,28 @@ public class GameControllerTest {
                 .andExpect(model().attribute("name", "Philip"));
 
     }
-    //Test 7
-   @ParameterizedTest
-   @CsvSource({"WIN, win","LOSE, lose", "DRAW, draw"})
-    void playShowMatchingResultingView(Result result, String expectedView) throws Exception {
+
+
+    @ParameterizedTest
+    @CsvSource({"WIN, win", "LOSE, lose", "DRAW, draw"})
+    void eachResultShowsItsOwnPage(Result result, String expectedView) throws Exception {
         when(game.play(Move.ROCK)).thenReturn(result);
 
         mockMvc.perform(post("/play")
-                .param("move", "ROCK")
-                .sessionAttr("name","Philip"))
+                        .param("move", "ROCK")
+                        .sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name(expectedView))
-                .andExpect(model().attribute("name","Philip"));
+                .andExpect(model().attribute("name", "Philip"));
 
-   }
+    }
+
+    @Test
+    void postingAMoveWithoutANameRedirectsToTheNameForm() throws Exception {
+        mockMvc.perform(post("/play").param("move", "ROCK"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/game"));
+    }
 
 
 }
