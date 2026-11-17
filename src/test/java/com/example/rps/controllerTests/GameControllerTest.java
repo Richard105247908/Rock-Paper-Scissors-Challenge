@@ -29,7 +29,7 @@ public class GameControllerTest {
     Game game;
 
     @Test
-    void newGameFormIsShown() throws Exception {
+    public void newGameFormIsShown() throws Exception {
         mockMvc.perform(get("/game"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("new_game"));
@@ -37,7 +37,7 @@ public class GameControllerTest {
     }
 
     @Test
-    void startsGameAndRedirectsToPlay() throws Exception {
+    public void startsGameAndRedirectsToPlay() throws Exception {
         mockMvc.perform(post("/game")
                         .param("name", "Philip"))
                 .andExpect(status().is3xxRedirection())
@@ -47,7 +47,7 @@ public class GameControllerTest {
 
 
     @Test
-    void playPageGreetsThePlayerByName() throws Exception {
+    public void playPageGreetsThePlayerByName() throws Exception {
         mockMvc.perform(get("/play").sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("play"))
@@ -56,7 +56,7 @@ public class GameControllerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
-    void blankNameShowsTheFormAgainWithAnError(String blankName) throws Exception {
+    public void blankNameShowsTheFormAgainWithAnError(String blankName) throws Exception {
         mockMvc.perform(post("/game").param("name", blankName))
                 .andExpect(status().isOk())
                 .andExpect(view().name("new_game"))
@@ -65,7 +65,7 @@ public class GameControllerTest {
     }
 
     @Test
-    void redirectsToGameWhenNoNameInSession() throws Exception {
+    public void redirectsToGameWhenNoNameInSession() throws Exception {
         mockMvc.perform(get("/play"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/game"));
@@ -73,7 +73,7 @@ public class GameControllerTest {
 
     //5
     @Test
-    void playPageOffersTheThreeMoves() throws Exception {
+    public void playPageOffersTheThreeMoves() throws Exception {
         mockMvc.perform(get("/play").sessionAttr("name", "Philip"))
                 .andExpect(model().attribute("moves", Move.values()));
 
@@ -81,8 +81,8 @@ public class GameControllerTest {
 
     //6e
     @Test
-    void rockThatBeatsTheComputerShowsTheWinPage() throws Exception {
-        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK,Move.SCISSORS,Result.WIN));
+    public void rockThatBeatsTheComputerShowsTheWinPage() throws Exception {
+        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK, Move.SCISSORS, Result.WIN));
         mockMvc.perform(post("/play")
                         .param("move", "ROCK")
                         .sessionAttr("name", "Philip"))
@@ -96,8 +96,8 @@ public class GameControllerTest {
 
     @ParameterizedTest
     @CsvSource({"WIN, win", "LOSE, lose", "DRAW, draw"})
-    void eachResultShowsItsOwnPage(Result result, String expectedView) throws Exception {
-        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK,Move.SCISSORS,result));
+    public void eachResultShowsItsOwnPage(Result result, String expectedView) throws Exception {
+        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK, Move.SCISSORS, result));
 
         mockMvc.perform(post("/play")
                         .param("move", "ROCK")
@@ -110,22 +110,22 @@ public class GameControllerTest {
     }
 
     @Test
-    void postingAMoveWithoutANameRedirectsToTheNameForm() throws Exception {
+    public void postingAMoveWithoutANameRedirectsToTheNameForm() throws Exception {
         mockMvc.perform(post("/play").param("move", "ROCK"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/game"));
     }
 
     @Test
-    public void resultPageShowsBothMoves() throws Exception{
+    public void resultPageShowsBothMoves() throws Exception {
         when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK, Move.SCISSORS, Result.WIN));
         mockMvc.perform(post("/play")
-                .param("move","ROCK")
-                .sessionAttr("name","Philip"))
+                        .param("move", "ROCK")
+                        .sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("win"))
-                .andExpect(model().attribute("playerMove",Move.ROCK))
-                .andExpect(model().attribute("computerMove",Move.SCISSORS));
+                .andExpect(model().attribute("playerMove", Move.ROCK))
+                .andExpect(model().attribute("computerMove", Move.SCISSORS));
     }
 
 
