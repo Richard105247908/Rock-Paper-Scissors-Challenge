@@ -27,4 +27,9 @@ public class GameTest {
 
         assertEquals(Result.DRAW, game.play(Move.ROCK));
     }
+
+    @Test
+    void playReturnBothMovesAndTheResult(){
+
+    }
 }
