@@ -71,28 +71,12 @@ public class GameControllerTest {
                 .andExpect(redirectedUrl("/game"));
     }
 
-    //5
     @Test
     public void playPageOffersTheThreeMoves() throws Exception {
         mockMvc.perform(get("/play").sessionAttr("name", "Philip"))
                 .andExpect(model().attribute("moves", Move.values()));
 
     }
-
-    //6e
-    @Test
-    public void rockThatBeatsTheComputerShowsTheWinPage() throws Exception {
-        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK, Move.SCISSORS, Result.WIN));
-        mockMvc.perform(post("/play")
-                        .param("move", "ROCK")
-                        .sessionAttr("name", "Philip"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("win"))
-                .andExpect(model().attribute("name", "Philip"));
-//                .andExpect(model().attribute("playerMove", Move.ROCK))
-//                .andExpect(model().attribute("computerMove", Move.SCISSORS));
-    }
-
 
     @ParameterizedTest
     @CsvSource({"WIN, win", "LOSE, lose", "DRAW, draw"})
