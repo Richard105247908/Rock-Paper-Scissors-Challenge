@@ -128,7 +128,7 @@ public class GameControllerTest {
                 .andExpect(model().attribute("computerMove", Move.SCISSORS));
     }
     @Test
-    public void unkonownMoveReturnBadRequest() throws Exception{
+    public void unknownMoveReturnsBadRequest() throws Exception{
         mockMvc.perform(post("/play")
                         .param("move", "LIZARD")
                         .sessionAttr("name", "Philip"))
@@ -136,7 +136,11 @@ public class GameControllerTest {
     }
 
     @Test
-    public void missingMoveReturnsBadRequest
+    public void missingMoveReturnsBadRequest () throws Exception {
+        mockMvc.perform(post("/play")
+                        .sessionAttr("name", "Philip"))
+                .andExpect(status().isBadRequest());
+    }
 
 
 
