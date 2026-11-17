@@ -32,13 +32,11 @@ public class GameTest {
     void playReturnBothMovesAndTheResult(){
         Game game = new Game(()->Move.SCISSORS);
 
-        Round round = game.play(Move.ROCK);
+        Round round =  game.play(Move.ROCK);
 
         assertEquals(Move.ROCK, round.playerMove());
         assertEquals(Move.SCISSORS, round.computerMove());
         assertEquals(Result.WIN, round.result());
-
-
 
     }
 }

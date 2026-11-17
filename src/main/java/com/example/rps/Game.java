@@ -7,16 +7,19 @@ public class Game {
         this.moveChooser = moveChooser;
     }
 
-    public Result play(Move playerMove) {
+
+    public Round play(Move playerMove) {
 
         Move computerMove = moveChooser.choose();
-        if (computerMove == playerMove) {
-            return Result.DRAW;
-        }
-        if (playerMove.beats(computerMove)) {
-            return Result.WIN;
-        }
-        return Result.LOSE;
 
+        Result result;
+        if (computerMove == playerMove) {
+            result = Result.DRAW;
+        } else if (playerMove.beats(computerMove)) {
+            result = Result.WIN;
+        } else {
+            result = Result.LOSE;
+        }
+        return new Round(playerMove, computerMove, result);
     }
 }
