@@ -53,13 +53,13 @@ public class GameController {
     }
 
     @PostMapping("/play")
-    public String playResults(@RequestParam Move move,HttpSession session,Model model){
+    public String playResults(@RequestParam Move move, HttpSession session, Model model) {
         String name = (String) session.getAttribute("name");
-        if (name==null){
+        if (name == null) {
             return "redirect:/game";
         }
         Result result = game.play(move);
-        model.addAttribute("name",name);
+        model.addAttribute("name", name);
         return result.name().toLowerCase(Locale.ROOT);
     }
 
