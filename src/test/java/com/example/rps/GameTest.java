@@ -10,14 +10,14 @@ public class GameTest {
     void playerWinsWhenTheirMoveBeatsTheComputers() {
         Game game = new Game(() -> Move.SCISSORS);
 
-        assertEquals(Result.WIN, game.play(Move.ROCK));
+        assertEquals(Result.WIN, game.play(Move.ROCK).result());
     }
 
     @Test
     void playerLosesWhenComputerMoveBeatsTheirMove() {
         Game game = new Game(() -> Move.PAPER);
 
-        assertEquals(Result.LOSE, game.play(Move.ROCK));
+        assertEquals(Result.LOSE, game.play(Move.ROCK).result());
 
     }
 
@@ -25,7 +25,7 @@ public class GameTest {
     void samePlayedMoveIsaDraw() {
         Game game = new Game(() -> Move.ROCK);
 
-        assertEquals(Result.DRAW, game.play(Move.ROCK));
+        assertEquals(Result.DRAW, game.play(Move.ROCK).result());
     }
 
     @Test
