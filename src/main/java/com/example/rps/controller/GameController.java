@@ -1,9 +1,6 @@
 package com.example.rps.controller;
 
-import com.example.rps.Game;
-import com.example.rps.Move;
-import com.example.rps.Player;
-import com.example.rps.Result;
+import com.example.rps.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,9 +55,11 @@ public class GameController {
         if (name == null) {
             return "redirect:/game";
         }
-        Result result = game.play(move).getResult();
+        Round round = game.play(move);
         model.addAttribute("name", name);
-        return result.name().toLowerCase(Locale.ROOT);
+        model.addAttribute("playerMove", round.getPlayerMove());
+        model.addAttribute("computerMove", round.getComputerMove());
+        return round.getResult().name().toLowerCase(Locale.ROOT);
     }
 
 }

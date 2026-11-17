@@ -3,6 +3,7 @@ package com.example.rps.controllerTests;
 import com.example.rps.Game;
 import com.example.rps.Move;
 import com.example.rps.Result;
+import com.example.rps.Round;
 import com.example.rps.controller.GameController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -81,28 +82,31 @@ public class GameControllerTest {
     //6e
     @Test
     void rockThatBeatsTheComputerShowsTheWinPage() throws Exception {
-        when(game.play(Move.ROCK)).thenReturn(Result.WIN);
+        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK,Move.SCISSORS,Result.WIN));
         mockMvc.perform(post("/play")
                         .param("move", "ROCK")
                         .sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("win"))
-                .andExpect(model().attribute("name", "Philip"));
-
+                .andExpect(model().attribute("name", "Philip"))
+                .andExpect(model().attribute("playerMove", Move.ROCK))
+                .andExpect(model().attribute("computerMove", Move.SCISSORS));
     }
 
 
     @ParameterizedTest
     @CsvSource({"WIN, win", "LOSE, lose", "DRAW, draw"})
     void eachResultShowsItsOwnPage(Result result, String expectedView) throws Exception {
-        when(game.play(Move.ROCK)).thenReturn(result);
+        when(game.play(Move.ROCK)).thenReturn(new Round(Move.ROCK,Move.SCISSORS,result));
 
         mockMvc.perform(post("/play")
                         .param("move", "ROCK")
                         .sessionAttr("name", "Philip"))
                 .andExpect(status().isOk())
                 .andExpect(view().name(expectedView))
-                .andExpect(model().attribute("name", "Philip"));
+                .andExpect(model().attribute("name", "Philip"))
+                .andExpect(model().attribute("playerMove", Move.ROCK))
+                .andExpect(model().attribute("computerMove", Move.SCISSORS));
 
     }
 

@@ -29,14 +29,13 @@ public class GameTest {
     }
 
     @Test
-    void playReturnBothMovesAndTheResult(){
+    void playReturnsBothMovesAndTheResult(){
         Game game = new Game(()->Move.SCISSORS);
 
         Round round =  game.play(Move.ROCK);
 
-        assertEquals(Move.ROCK, round.playerMove());
-        assertEquals(Move.SCISSORS, round.computerMove());
+        assertEquals(Move.ROCK, round.getPlayerMove());
+        assertEquals(Move.SCISSORS, round.getComputerMove());
         assertEquals(Result.WIN, round.getResult());
-
     }
 }
