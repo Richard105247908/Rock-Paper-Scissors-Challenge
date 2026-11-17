@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Locale;
+
 @Controller
 public class GameController {
 
@@ -51,9 +53,14 @@ public class GameController {
     }
 
     @PostMapping("/play")
-    public String xx(@RequestParam Move move,HttpSession session,Model model){
-
-        return "f";
+    public String playResults(@RequestParam Move move,HttpSession session,Model model){
+        String name = (String) session.getAttribute("name");
+        if (name==null){
+            return "redirect:/game";
+        }
+        Result result = game.play(move);
+        model.addAttribute("name",name);
+        return result.name().toLowerCase(Locale.ROOT);
     }
 
 }
